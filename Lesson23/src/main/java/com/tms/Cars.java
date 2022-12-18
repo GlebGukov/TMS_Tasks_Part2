@@ -3,14 +3,12 @@ package com.tms;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @WebServlet("/cars")
 public class Cars extends HttpServlet {
@@ -19,8 +17,12 @@ public class Cars extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        String car = req.getParameter("car");
         ServletOutputStream outputStream = resp.getOutputStream();
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        Cookie cookie = new Cookie("1","LastCall");
+        outputStream.print("hello");
         if (cars.get(id)!=null) {
             outputStream.print(cars.get(id));
         } else if (Objects.equals(id, "All")) {
@@ -28,7 +30,8 @@ public class Cars extends HttpServlet {
                 outputStream.println(entry.getKey() + " = " + entry.getValue());
             }
         } else {
-            outputStream.print("SSSSSSSSSSS");
+           outputStream.print("hello");
+
         }
     }
 
