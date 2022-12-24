@@ -1,1 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Caramel&family=Rubik+Vinyl&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sevillana&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&display=swap');
 
+#Name{
+    font-family: Rubik Vinyl;
+    border-color: blue;
+}
+#top{
+    font-family: Sevillana;
+}
+#Info{
+    font-family: Josefin Sans;
+}
