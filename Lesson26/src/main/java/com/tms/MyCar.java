@@ -24,6 +24,10 @@ public class MyCar {
     public void setYear(String year) {
         this.year = year;
     }
+
+    public MyCar(String id) {
+        this.id = id;
+    }
     public MyCar(String model, String year, String id) {
         this.model = model;
         this.year = year;
@@ -36,4 +40,13 @@ public class MyCar {
                 ", year='" + year + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyCar myCar = (MyCar) o;
+        return Objects.equals(id, myCar.id);
+    }
+
 }
