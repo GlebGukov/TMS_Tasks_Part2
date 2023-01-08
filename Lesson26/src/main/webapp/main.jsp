@@ -12,11 +12,6 @@
 <form action="/get">
   <button>Просмотреть машины</button>
 </form>
-<form action="/delete">
-  <button>Удалить машину</button>
-</form>
-
-
 
 </body>
 

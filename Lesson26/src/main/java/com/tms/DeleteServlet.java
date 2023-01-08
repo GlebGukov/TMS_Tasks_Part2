@@ -11,24 +11,21 @@ import java.util.Objects;
 
 @WebServlet("/delete")
 public class DeleteServlet extends HttpServlet {
+    MachineStorage storage = new MachineStorage();
+    Database database = new DatabaseImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/delete.jsp").forward(req,resp);
+        req.getRequestDispatcher("/get.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        MachineStorage storage = new MachineStorage();
+
         String id = req.getParameter("id");
-        String all = req.getParameter("all");
-        if(Objects.equals(req.getParameter("id"), "0")){
-            List<MyCar> cars = storage.getCars();
-            cars.clear();
-            resp.sendRedirect("/");
-        }
-        else if (Objects.equals(req.getParameter("id"), id)){
-            storage.delete(id);
-            resp.sendRedirect("/delete");
-        }
+        String delete = req.getParameter("delete");
+        database.delete(delete);
+        storage.delete(id);
+        resp.sendRedirect("/");
     }
 }
