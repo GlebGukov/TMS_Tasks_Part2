@@ -1,15 +1,20 @@
-package com.tms;
+package com.tms.impl;
+
+import com.tms.myServices.DataBaseService;
+import com.tms.MyCar;
+import com.tms.myInterface.Operations;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseImpl implements Database {
+public class DataBaseImpl implements Operations {
+    DataBaseService serviceDataBase = new DataBaseService();
 
-    DataBaseServlet servlet = new DataBaseServlet();
     @Override
-    public void save(MyCar myCar){
-        Connection connection = servlet.getConnection();
+    public MyCar save(String id,String model,String year){
+        MyCar myCar = new MyCar(model,year,id);
+        Connection connection = serviceDataBase.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("insert into Cars (id,model,year) values(?,?,?)");
             preparedStatement.setString(1,myCar.getId());
@@ -19,13 +24,12 @@ public class DatabaseImpl implements Database {
         } catch (Exception exc){
             throw new RuntimeException("SAVE EXC");
         }
-
-
+        return myCar;
     }
 
     @Override
     public void delete(String id) {
-        Connection connection = servlet.getConnection();
+        Connection connection = serviceDataBase.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("delete from cars where id = ?");
             preparedStatement.setString(1,id);
@@ -39,7 +43,7 @@ public class DatabaseImpl implements Database {
     @Override
     public List<MyCar> getAll () {
         try {
-            Connection connection = servlet.getConnection();
+            Connection connection = serviceDataBase.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from cars");
             return getList(resultSet);

@@ -1,4 +1,10 @@
-package com.tms;
+package com.tms.servlets;
+
+import com.tms.MyCar;
+import com.tms.impl.DataBaseImpl;
+import com.tms.impl.StorageImpl;
+import com.tms.myInterface.Operations;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,12 +15,13 @@ import java.util.List;
 
 @WebServlet("/get")
 public class GetCarsServlet extends HttpServlet {
-    Database database = new DatabaseImpl();
+    Operations operationsDataBase = new DataBaseImpl();
+    Operations operationsStorage = new StorageImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        MachineStorage storage = new MachineStorage();
-        List<MyCar> carsBase = database.getAll();
-        List<MyCar> cars = storage.getCars();
+
+        List<MyCar> carsBase = operationsDataBase.getAll();
+        List<MyCar> cars = operationsStorage.getAll();
         req.setAttribute("cars",cars);
         req.setAttribute("carsBase",carsBase);
         req.getRequestDispatcher("/get.jsp").forward(req,resp);

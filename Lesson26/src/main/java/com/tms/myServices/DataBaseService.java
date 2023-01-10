@@ -1,20 +1,15 @@
-package com.tms;
+package com.tms.myServices;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-@WebServlet(value = "/init", loadOnStartup = 1)
-public class DataBaseServlet extends HttpServlet {
-    @Override
-    public void init(ServletConfig config) throws ServletException {
+public class DataBaseService {
+
+    public void initialization() {
         try {
             Class.forName("org.postgresql.Driver");
-//            getConnection().createStatement().executeUpdate("drop table cars");
+            getConnection().createStatement().executeUpdate("drop table cars");
             getConnection().createStatement().execute("" +
                     "create table cars (" +
                     "id varchar primary key," +
@@ -24,7 +19,7 @@ public class DataBaseServlet extends HttpServlet {
 
 
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e);
+            System.out.println("problems in initialization");
             throw new RuntimeException();
         }
     }
