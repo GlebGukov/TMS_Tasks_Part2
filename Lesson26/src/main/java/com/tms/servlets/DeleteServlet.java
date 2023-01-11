@@ -14,8 +14,8 @@ import java.io.IOException;
 
 @WebServlet("/delete")
 public class DeleteServlet extends HttpServlet {
-    Operations operationsStorage = new StorageImpl();
-    Operations operationsDataBase = new DataBaseImpl();
+    Operations operationsStorage = StorageImpl.getInstance();
+    Operations operationsDataBase = DataBaseImpl.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/get.jsp").forward(req, resp);

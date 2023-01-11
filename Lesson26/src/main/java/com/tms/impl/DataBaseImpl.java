@@ -10,6 +10,7 @@ import java.util.List;
 
 public class DataBaseImpl implements Operations {
     DataBaseService serviceDataBase = new DataBaseService();
+    private static DataBaseImpl dataBaseImpl;
 
     @Override
     public MyCar save(String id,String model,String year){
@@ -70,5 +71,15 @@ public class DataBaseImpl implements Operations {
             throw new RuntimeException("GetListSQLexc");
         }
         return cars;
+    }
+    public static DataBaseImpl getInstance(){
+        if (dataBaseImpl == null){
+            synchronized (DataBaseImpl.class){
+                if (dataBaseImpl == null){
+                    dataBaseImpl = new DataBaseImpl();
+                }
+            }
+        }
+        return dataBaseImpl;
     }
 }

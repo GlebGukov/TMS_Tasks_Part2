@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataBaseService {
+    private static DataBaseService dataBaseService;
 
     public void initialization() {
         try {
@@ -16,8 +17,6 @@ public class DataBaseService {
                     "model varchar," +
                     "year varchar" +
                     ")");
-
-
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("problems in initialization");
             throw new RuntimeException();
@@ -32,5 +31,15 @@ public class DataBaseService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public static DataBaseService getInstance(){
+        if (dataBaseService == null){
+            synchronized (DataBaseService.class){
+                if(dataBaseService == null){
+                    dataBaseService = new DataBaseService();
+                }
+            }
+        }
+        return dataBaseService;
     }
 }

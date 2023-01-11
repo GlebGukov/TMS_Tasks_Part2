@@ -14,8 +14,8 @@ import java.io.IOException;
 @WebServlet("/add")
 public class AddCarServlet extends HttpServlet {
 
-    Operations operationsDataBase = new DataBaseImpl();
-    Operations operationsStorage = new StorageImpl();
+    Operations operationsDataBase = DataBaseImpl.getInstance();
+    Operations operationsStorage = StorageImpl.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/post.jsp").forward(req, resp);

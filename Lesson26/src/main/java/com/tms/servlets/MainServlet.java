@@ -14,7 +14,7 @@ import java.io.IOException;
 public class MainServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
-        DataBaseService dataBaseService = new DataBaseService();
+        DataBaseService dataBaseService = DataBaseService.getInstance();
         dataBaseService.initialization();
     }
 

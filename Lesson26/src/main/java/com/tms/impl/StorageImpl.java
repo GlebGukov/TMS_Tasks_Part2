@@ -8,6 +8,7 @@ import java.util.List;
 
 public class StorageImpl implements Operations {
     private static final List<MyCar> cars = new ArrayList<>();
+    private static StorageImpl storage;
     @Override
     public MyCar save(String id,String model,String year) {
         MyCar myCar = new MyCar(model,year,id);
@@ -31,5 +32,14 @@ public class StorageImpl implements Operations {
     @Override
     public MyCar carId(String id) {
         return null;
+    }
+    public static StorageImpl getInstance(){
+        if (storage == null){
+            synchronized (StorageImpl.class){
+                if (storage==null){
+                    storage = new StorageImpl();
+                }
+            }
+        }return storage;
     }
 }

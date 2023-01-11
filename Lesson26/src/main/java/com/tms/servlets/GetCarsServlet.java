@@ -15,8 +15,8 @@ import java.util.List;
 
 @WebServlet("/get")
 public class GetCarsServlet extends HttpServlet {
-    Operations operationsDataBase = new DataBaseImpl();
-    Operations operationsStorage = new StorageImpl();
+    Operations operationsDataBase = DataBaseImpl.getInstance();
+    Operations operationsStorage = StorageImpl.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
