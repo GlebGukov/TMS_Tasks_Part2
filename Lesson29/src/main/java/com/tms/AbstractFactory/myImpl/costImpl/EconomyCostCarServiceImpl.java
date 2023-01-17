@@ -10,15 +10,4 @@ public class EconomyCostCarServiceImpl implements CostCarService {
     public Cost priceRange() {
         return Cost.builder().cost(new StringBuilder("From 1000 to 7000")).currency("dollar").build();
     }
-
-    public static EconomyCostCarServiceImpl getInstance() {
-        if (economyCostCarService == null){
-            synchronized (EconomyCostCarServiceImpl.class){
-                if (economyCostCarService == null){
-                    economyCostCarService = new EconomyCostCarServiceImpl();
-                }
-            }
-        }
-        return economyCostCarService;
-    }
 }

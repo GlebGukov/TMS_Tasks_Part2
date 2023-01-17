@@ -10,15 +10,4 @@ public class SportTypeCarServiceImpl implements TypeCarService {
     public Type typeCar() {
         return Type.builder().type("Sport").priceCategory("high").build();
     }
-
-    public static SportTypeCarServiceImpl getInstance() {
-        if (sportTypeCarService == null){
-            synchronized (SportTypeCarServiceImpl.class){
-                if (sportTypeCarService == null){
-                    sportTypeCarService = new SportTypeCarServiceImpl();
-                }
-            }
-        }
-        return sportTypeCarService;
-    }
 }

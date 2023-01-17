@@ -11,16 +11,16 @@ import com.tms.AbstractFactory.myInterface.TypeCarService;
 public class BusinessRussianFactoryCarsImpl implements FactoryCars {
     @Override
     public CountryCarService getCountry() {
-        return RussiaCountryCarServiceImpl.getInstance();
+        return new RussiaCountryCarServiceImpl();
     }
 
     @Override
     public TypeCarService getType() {
-        return BusinessTypeCarServiceImpl.getInstance();
+        return new BusinessTypeCarServiceImpl();
     }
 
     @Override
     public CostCarService getCost() {
-        return BusinessCostCarServiceImpl.getInstance();
+        return new BusinessCostCarServiceImpl();
     }
 }

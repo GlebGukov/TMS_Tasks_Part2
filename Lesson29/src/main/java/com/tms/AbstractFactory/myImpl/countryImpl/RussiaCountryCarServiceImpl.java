@@ -11,15 +11,4 @@ public class RussiaCountryCarServiceImpl implements CountryCarService {
     public Country infoCountry() {
         return Country.builder().name("Russia").population(143000000).dopInfo(new StringBuilder("Country area 17 100 000 km²")).build();
     }
-
-    public static RussiaCountryCarServiceImpl getInstance() {
-        if (russiaCountryCarService == null){
-            synchronized (RussiaCountryCarServiceImpl.class){
-                if (russiaCountryCarService == null){
-                    russiaCountryCarService = new RussiaCountryCarServiceImpl();
-                }
-            }
-        }
-        return russiaCountryCarService;
-    }
 }

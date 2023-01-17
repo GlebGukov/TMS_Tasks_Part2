@@ -11,14 +11,4 @@ public class BusinessCostCarServiceImpl implements CostCarService {
     public Cost priceRange() {
         return Cost.builder().cost(new StringBuilder("From 50000 to 2500000")).currency("dollar").build();
     }
-
-    public static BusinessCostCarServiceImpl getInstance() {
-        if (businessCostCarService == null) {
-            synchronized (BusinessCostCarServiceImpl.class){
-                if (businessCostCarService == null){
-                    businessCostCarService = new BusinessCostCarServiceImpl();
-                }
-            }
-        } return businessCostCarService;
-    }
 }

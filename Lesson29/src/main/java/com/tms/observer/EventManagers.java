@@ -1,14 +1,13 @@
 package com.tms.observer;
 
 import java.util.Observable;
-import java.util.Observer;
 
 public class EventManagers extends Observable {
 
-    public void addEvent (Object o){
+    public void addEvent (String event){
         System.out.println("Оповещаем подписчиков...");
         setChanged();
-        notifyObservers(o);
+        notifyObservers(event);
     }
 
 }

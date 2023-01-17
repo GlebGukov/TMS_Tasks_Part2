@@ -17,6 +17,6 @@ public class Women implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         String arg1 = (String) arg;
-        System.out.println( getName() + " received information about "+ arg1);
+        System.out.println(getName() + " received information about "+ arg1);
     }
 }

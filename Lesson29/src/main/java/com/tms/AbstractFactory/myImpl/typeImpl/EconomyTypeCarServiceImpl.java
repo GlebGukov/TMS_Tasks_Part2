@@ -10,15 +10,4 @@ public class EconomyTypeCarServiceImpl implements TypeCarService {
     public Type typeCar() {
         return Type.builder().type("Economy").priceCategory("low").build();
     }
-
-    public static EconomyTypeCarServiceImpl getInstance() {
-        if (economyTypeCarService == null){
-            synchronized (EconomyTypeCarServiceImpl.class){
-                if (economyTypeCarService == null){
-                    economyTypeCarService = new EconomyTypeCarServiceImpl();
-                }
-            }
-        }
-        return economyTypeCarService;
-    }
 }

@@ -11,16 +11,16 @@ import com.tms.AbstractFactory.myInterface.TypeCarService;
 public class EconomyChinaFactoryCarsImpl implements FactoryCars {
     @Override
     public CountryCarService getCountry() {
-        return ChinaCountryCarServiceImpl.getInstance();
+        return new ChinaCountryCarServiceImpl();
     }
 
     @Override
     public TypeCarService getType() {
-        return EconomyTypeCarServiceImpl.getInstance();
+        return new EconomyTypeCarServiceImpl();
     }
 
     @Override
     public CostCarService getCost() {
-        return EconomyCostCarServiceImpl.getInstance();
+        return new EconomyCostCarServiceImpl();
     }
 }

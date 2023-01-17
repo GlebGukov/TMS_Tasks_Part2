@@ -10,13 +10,4 @@ public class BusinessTypeCarServiceImpl implements TypeCarService {
     public Type typeCar() {
                 return Type.builder().type("Business").priceCategory("highest").build();
     }
-    public static BusinessTypeCarServiceImpl getInstance() {
-        if (businessTypeCarService == null) {
-            synchronized (BusinessTypeCarServiceImpl.class){
-                if (businessTypeCarService == null){
-                    businessTypeCarService = new BusinessTypeCarServiceImpl();
-                }
-            }
-        } return businessTypeCarService;
-    }
 }

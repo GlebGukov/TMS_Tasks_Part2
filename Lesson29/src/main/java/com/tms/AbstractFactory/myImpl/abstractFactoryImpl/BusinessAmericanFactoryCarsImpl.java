@@ -13,16 +13,16 @@ import lombok.ToString;
 public class BusinessAmericanFactoryCarsImpl implements FactoryCars {
     @Override
     public CountryCarService getCountry() {
-      return AmericaCountryCarServiceImpl.getInstance();
+      return new AmericaCountryCarServiceImpl();
     }
 
     @Override
     public TypeCarService getType() {
-        return BusinessTypeCarServiceImpl.getInstance();
+        return new BusinessTypeCarServiceImpl();
     }
 
     @Override
     public CostCarService getCost() {
-        return BusinessCostCarServiceImpl.getInstance();
+        return new BusinessCostCarServiceImpl();
     }
 }
