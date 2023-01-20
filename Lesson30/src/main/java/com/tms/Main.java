@@ -5,9 +5,14 @@ public class Main {
         DB.initialization();
         Car car = new Car("Tesla",1996,1);
         Car car1 = new Car("BMW",2000,2);
-        CarService carService = new DBCarService(new CacheCarService());
+        Car car2 = new Car("Audi",2020,3);
+        CarService carService = new CacheCarService(new DBCarService());
         carService.save(car);
         carService.save(car1);
+        carService.save(car2);
+
+        carService.delete(1);
+        carService.getCar(2);
         carService.deleteAll();
 
     }
