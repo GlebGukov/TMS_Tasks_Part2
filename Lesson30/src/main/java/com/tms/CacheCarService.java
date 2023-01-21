@@ -18,10 +18,15 @@ public class CacheCarService implements CarService {
 
     @Override
     public Car save(Car car) {
-        if (!carsCache.contains(car))
+        boolean b = carsCache.stream().anyMatch(car1 -> car1.equals(car));
+        if (!b) {
             carsCache.add(car);
+            System.out.println("Car " + car + " cached");
+        } else {
+            System.out.println("The " + car + " is present in the cache");
+        }
+        System.out.println("Send info to database");
         carService.save(car);
-        System.out.println("Car " + car + " cached");
         return car;
     }
 
@@ -42,7 +47,11 @@ public class CacheCarService implements CarService {
         if (b) {
             List<Car> collect = carsCache.stream().filter(car -> car.getId() == id).collect(Collectors.toList());
             System.out.println(collect);
-
+        }
+        else {
+            System.out.println("Cars under id "+id+" was not found in the cache");
+            System.out.println("Go to DataBase");
+            carService.getCar(id);
         }
 
     }
