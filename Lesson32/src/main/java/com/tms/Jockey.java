@@ -13,8 +13,7 @@ public class Jockey {
     private RaceHorse raceHorse;
     private Rider rider;
 
-    double cfWin(){
-
+    double pairCf(){
         return raceHorse.runningSpeed()+ rider.getHorseRacingExperience();
     }
 }

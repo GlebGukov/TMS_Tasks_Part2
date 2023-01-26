@@ -8,9 +8,6 @@ public class SpeedFormula {
         double cfPatience = temperament.getCfPatience();
         double cfStability = temperament.getCfStability();
         double totalIndex = cfStability + cfAggression + cfPatience;
-        double speed = (totalIndex + (Math.random()*(maxSpeed - minSpeed)+ minSpeed))+indexHealth;
-        String format = "%.2f";
-        System.out.printf(format,speed);
-        return speed;
+        return (totalIndex + (Math.random()*(maxSpeed - minSpeed)+ minSpeed))+indexHealth;
     }
 }

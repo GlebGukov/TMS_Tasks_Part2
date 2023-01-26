@@ -3,7 +3,9 @@ package com.tms.horses.horseImpl.healthImpl;
 import com.tms.SpeedFormula;
 import com.tms.horses.horseInterface.HorseAbility;
 import com.tms.myEnum.Temperament;
+import lombok.ToString;
 
+@ToString
 public class HealthyHorse implements HorseAbility {
     private final SpeedFormula formula = new SpeedFormula();
 
