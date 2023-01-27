@@ -8,7 +8,7 @@ import com.tms.horses.horseImpl.healthImpl.HealthyHorse;
 
 public class Arabian extends RaceHorse {
 
-    public Arabian(int age, Temperament temperament, HorseAbility horseAbility) {
-        super(age, temperament, horseAbility);
+    public Arabian(Temperament temperament, HorseAbility horseAbility) {
+        super(temperament, horseAbility);
     }
 }

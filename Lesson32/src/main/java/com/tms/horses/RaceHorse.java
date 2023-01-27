@@ -11,11 +11,10 @@ import lombok.ToString;
 @ToString
 public abstract class RaceHorse {
 
-    private int age;
     private Temperament temperament;
     private HorseAbility horseAbility;
     public double runningSpeed(){
-        return horseAbility.runningSpeed(getTemperament(),getAge());
+        return horseAbility.runningSpeed(getTemperament());
     }
 
 }

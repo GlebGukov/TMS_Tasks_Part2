@@ -9,10 +9,10 @@ import lombok.ToString;
 public class SickHorse implements HorseAbility {
     SpeedFormula formula = new SpeedFormula();
     @Override
-    public double runningSpeed(Temperament temperament, int age) {
+    public double runningSpeed(Temperament temperament) {
         double indexHealth = (Math.random() * (10 - 9) + 4);
         int maxSpeed = 35;
         int minSpeed = 15;
-        return formula.speedFormula(temperament, indexHealth, maxSpeed, minSpeed);
+        return formula.speedFormula(temperament,indexHealth, maxSpeed, minSpeed);
     }
 }

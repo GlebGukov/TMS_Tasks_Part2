@@ -6,8 +6,8 @@ import com.tms.myEnum.Temperament;
 
 public class Belarusian extends RaceHorse {
 
-    public Belarusian(int age, Temperament temperament, HorseAbility horseAbility) {
-        super(age, temperament, horseAbility);
+    public Belarusian(Temperament temperament, HorseAbility horseAbility) {
+        super(temperament, horseAbility);
     }
 
 }
