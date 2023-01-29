@@ -1,8 +1,8 @@
 package com.tms.horses.horseInterface;
 
-import com.tms.myEnum.Temperament;
+import com.tms.horses.myEnum.Temperament;
 
-public interface HorseAbility {
+public interface HorseHealth {
     double runningSpeed(Temperament temperament);
     
 

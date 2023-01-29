@@ -1,14 +1,11 @@
 package com.tms.horses.horseImpl.healthImpl;
 
 import com.tms.SpeedFormula;
-import com.tms.horses.horseInterface.HorseAbility;
-import com.tms.myEnum.Temperament;
-import lombok.ToString;
+import com.tms.horses.horseInterface.HorseHealth;
+import com.tms.horses.myEnum.Temperament;
 
-@ToString
-public class HealthyHorse implements HorseAbility {
+public class HealthyHorse implements HorseHealth {
     private final SpeedFormula formula = new SpeedFormula();
-
     @Override
     public double runningSpeed(Temperament temperament) {
         double indexHealth = (Math.random() * (10 - 9) + 9);

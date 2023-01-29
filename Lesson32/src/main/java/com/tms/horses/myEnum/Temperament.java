@@ -1,4 +1,4 @@
-package com.tms.myEnum;
+package com.tms.horses.myEnum;
 
 public enum Temperament {
     Choleric((Math.random()*(10-8)+8),(Math.random()*(7-5)+5),(Math.random()*(7-5)+5)), // 8-10; 5-7; 5-7 18-24

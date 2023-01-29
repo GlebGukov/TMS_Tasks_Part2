@@ -1,4 +1,4 @@
-package com.tms;
+package com.tms.track;
 
 public interface Track {
     int difficulty ();
