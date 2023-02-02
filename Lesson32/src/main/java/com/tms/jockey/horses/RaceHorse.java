@@ -1,14 +1,16 @@
-package com.tms.horses;
+package com.tms.jockey.horses;
 
-import com.tms.horses.horseInterface.HorseHealth;
-import com.tms.horses.myEnum.Temperament;
+import com.tms.jockey.horses.horseInterface.HorseHealth;
+import com.tms.jockey.horses.myEnum.Temperament;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.stereotype.Service;
 
 @Data
 @AllArgsConstructor
 @ToString
+@Service
 public abstract class RaceHorse {
 
     private Temperament temperament;

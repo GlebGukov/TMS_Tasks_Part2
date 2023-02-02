@@ -1,9 +1,11 @@
-package com.tms.horses.horseImpl.healthImpl;
+package com.tms.jockey.horses.horseImpl.healthImpl;
 
-import com.tms.SpeedFormula;
-import com.tms.horses.horseInterface.HorseHealth;
-import com.tms.horses.myEnum.Temperament;
+import com.tms.jockey.SpeedFormula;
+import com.tms.jockey.horses.horseInterface.HorseHealth;
+import com.tms.jockey.horses.myEnum.Temperament;
+import org.springframework.stereotype.Component;
 
+@Component
 public class HealthyHorse implements HorseHealth {
     private final SpeedFormula formula = new SpeedFormula();
     @Override

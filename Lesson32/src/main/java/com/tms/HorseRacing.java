@@ -1,18 +1,14 @@
 package com.tms;
 
+import com.tms.jockey.Jockey;
 import com.tms.track.Track;
-import lombok.Data;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
-
-@Data
+@Service
 public class HorseRacing {
-    private Jockey jockey;
-    private Track track;
 
-
-    void StartCompetitions(Track track, Jockey... jockeys){
-        int cash = 500;
+    public void startCompetitions(Track track, int cash, Jockey... jockeys){
         while (cash>0) {
             int cfTrack = track.difficulty();
             int distance = track.distance();
@@ -58,7 +54,7 @@ public class HorseRacing {
         }
         System.out.println("how much ?");
         double betCash = scanner.nextInt();
-        while (betCash > cash) {
+        while (betCash > cash || betCash<0) {
             System.out.println("no money on balance");
             betCash = scanner.nextInt();
         }

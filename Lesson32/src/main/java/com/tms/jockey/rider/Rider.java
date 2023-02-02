@@ -1,4 +1,4 @@
-package com.tms;
+package com.tms.jockey.rider;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

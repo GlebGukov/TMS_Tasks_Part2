@@ -1,6 +1,6 @@
-package com.tms;
+package com.tms.jockey;
 
-import com.tms.horses.myEnum.Temperament;
+import com.tms.jockey.horses.myEnum.Temperament;
 
 public class SpeedFormula {
     public double speedFormula(Temperament temperamentHorse, double indexHealth, int maxSpeed, int minSpeed) {
