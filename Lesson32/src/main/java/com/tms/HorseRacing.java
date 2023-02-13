@@ -1,24 +1,23 @@
 package com.tms;
 
 import com.tms.jockey.Jockey;
-import com.tms.track.Track;
+import com.tms.jockey.horses.myEnum.TrackExample;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 @Service
 public class HorseRacing {
 
-    public void startCompetitions(Track track, int cash, Jockey... jockeys){
+    public void startCompetitions(TrackExample track, int cash, Jockey... jockeys){
         while (cash>0) {
-            int cfTrack = track.difficulty();
-            int distance = track.distance();
+            int cfTrack = track.getDifficulty();
+            int distance = track.getDistance();
             double winTime = distance;
             String winPair = null;
             double passingResult;
             for (Jockey jockey : jockeys) {
                 double totalSpeed = jockey.pairCf() / cfTrack;
                 passingResult = distance / totalSpeed;
-//                String s = passingResult + " Результат пары под номером " + jockey.getRider().getRegistrationNumber();
                 if (passingResult < winTime) {
                     winTime = passingResult;
                     winPair = String.valueOf(jockey.getRider().getRegistrationNumber());

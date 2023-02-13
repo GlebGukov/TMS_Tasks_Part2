@@ -10,9 +10,8 @@ import com.tms.jockey.horses.horseImpl.raceHorseImpl.Belarusian;
 import com.tms.jockey.horses.horseImpl.raceHorseImpl.Thoroughbreds;
 import com.tms.jockey.horses.horseImpl.raceHorseImpl.Trotter;
 import com.tms.jockey.horses.myEnum.Temperament;
+import com.tms.jockey.horses.myEnum.TrackExample;
 import com.tms.jockey.rider.Rider;
-import com.tms.track.Track;
-import com.tms.track.trackImpl.StandardTrackImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,7 +22,6 @@ public class AppConfig {
         return new Thoroughbreds(Temperament.Choleric, new SickHorse());
     }
 
-    //
     @Bean
     RaceHorse trotter() {
         return new Trotter(Temperament.Choleric, new HealthyHorse());
@@ -75,9 +73,8 @@ public class AppConfig {
     Jockey jockey4(RaceHorse arabian, Rider rider22) {
         return new Jockey(arabian, rider22);
     }
-    @Bean
-    Track track() {
-        return new StandardTrackImpl();
+    TrackExample trackExample(){
+        return trackExample();
     }
     @Bean
     HorseRacing horseRacing(){

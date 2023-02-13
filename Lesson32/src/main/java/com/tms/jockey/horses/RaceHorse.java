@@ -4,13 +4,11 @@ import com.tms.jockey.horses.horseInterface.HorseHealth;
 import com.tms.jockey.horses.myEnum.Temperament;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.ToString;
-import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
+
 
 @Data
 @AllArgsConstructor
-@ToString
-@Service
 public abstract class RaceHorse {
 
     private Temperament temperament;
