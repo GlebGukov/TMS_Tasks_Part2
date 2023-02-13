@@ -1,26 +1,33 @@
 package com.tms;
 
+import com.tms.aop.ExecutionTime;
 import com.tms.jockey.Jockey;
 import com.tms.jockey.horses.myEnum.TrackExample;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-@Service
-public class HorseRacing {
 
-    public void startCompetitions(TrackExample track, int cash, Jockey... jockeys){
-        while (cash>0) {
+public class HorseRacing {
+    private double timeHorseRacing;
+
+    @ExecutionTime
+    public void competitions(TrackExample track, int cash, Jockey... jockeys) {
+        while (cash > 0) {
             int cfTrack = track.getDifficulty();
             int distance = track.getDistance();
             double winTime = distance;
             String winPair = null;
             double passingResult;
+            timeHorseRacing = distance;
             for (Jockey jockey : jockeys) {
                 double totalSpeed = jockey.pairCf() / cfTrack;
                 passingResult = distance / totalSpeed;
                 if (passingResult < winTime) {
                     winTime = passingResult;
                     winPair = String.valueOf(jockey.getRider().getRegistrationNumber());
+                    if (timeHorseRacing > winTime) {
+                        timeHorseRacing = winTime;
+                    }
                 }
             }
             int balance = oneXBet(winPair, cash, jockeys);
@@ -32,7 +39,8 @@ public class HorseRacing {
             cash = balance;
         }
     }
-    private int oneXBet(String winPair,int cash,Jockey... jockeys) {
+@ExecutionTime
+    private int oneXBet(String winPair, int cash, Jockey... jockeys) {
         List<Integer> registrationNumberList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Participating in the races:");
@@ -53,7 +61,7 @@ public class HorseRacing {
         }
         System.out.println("how much ?");
         double betCash = scanner.nextInt();
-        while (betCash > cash || betCash<0) {
+        while (betCash > cash || betCash < 0) {
             System.out.println("no money on balance");
             betCash = scanner.nextInt();
         }

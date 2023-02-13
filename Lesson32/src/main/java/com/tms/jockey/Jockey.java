@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 @Data
 @RequiredArgsConstructor
-@Service
 public class Jockey {
     private final RaceHorse raceHorse;
     private final Rider rider;

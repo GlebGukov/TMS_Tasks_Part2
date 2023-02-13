@@ -5,7 +5,6 @@ import com.tms.jockey.horses.horseInterface.HorseHealth;
 import com.tms.jockey.horses.myEnum.Temperament;
 import org.springframework.stereotype.Component;
 
-@Component
 public class Arabian extends RaceHorse {
 
     public Arabian(Temperament temperament, HorseHealth horseAbility) {
