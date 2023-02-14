@@ -2,10 +2,7 @@ package com.tms.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,24 +12,26 @@ public class MyAspect {
     @Pointcut("@annotation(com.tms.aop.ExecutionTime)")
     public void pointCutExecutionTime() {
     }
+    @Pointcut("@annotation(com.tms.aop.RaceTime)")
+    public void pointCutRaceTime(){}
 
-    ;
+    @Around(value = "pointCutExecutionTime()")
+    public Object runExecutionTime(ProceedingJoinPoint point) throws Throwable {
+        double start = System.nanoTime();
 
-//    @Around(value = "pointCutExecutionTime()")
-//    public Object runExecutionTime(ProceedingJoinPoint point) {
-//        start = System.currentTimeMillis();
-//        try {
-//            Object proceed = point.proceed();
-//            end = System.currentTimeMillis();
-//            durations = end - start;
-//            return proceed;
-//        } catch (Throwable e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+            Object proceed = point.proceed();
 
-    @AfterReturning(pointcut = "execution(* com.tms.HorseRacing.oneXBet(*))", returning = "result")
-    public void info(JoinPoint joinPoint, Object result) {
-        System.out.println("Durations " + joinPoint.getSignature().getName() + " = " + result.toString());
+        double end = System.nanoTime();
+        double durations = end - start;
+        System.out.println();
+        System.out.println(proceed.getClass().getComponentType()+"**********");
+        System.out.print("Method "+point.getSignature().getName()+": Execution Time "+ String.format(("%.2f"),durations/1000000000)+" second");
+        return durations;
+    }
+
+    @AfterReturning(value = "pointCutRaceTime()",returning = "time")
+    public void info(Object time) {
+        System.out.println();
+        System.out.println("Durations " +time.toString() );
     }
 }

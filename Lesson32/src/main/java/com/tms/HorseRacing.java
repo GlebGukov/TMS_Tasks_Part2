@@ -3,12 +3,10 @@ package com.tms;
 import com.tms.aop.ExecutionTime;
 import com.tms.jockey.Jockey;
 import com.tms.jockey.horses.myEnum.TrackExample;
-import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 public class HorseRacing {
-    private double timeHorseRacing;
 
     @ExecutionTime
     public void competitions(TrackExample track, int cash, Jockey... jockeys) {
@@ -18,28 +16,29 @@ public class HorseRacing {
             double winTime = distance;
             String winPair = null;
             double passingResult;
-            timeHorseRacing = distance;
+            double timeHorseRacing = 0;
             for (Jockey jockey : jockeys) {
                 double totalSpeed = jockey.pairCf() / cfTrack;
                 passingResult = distance / totalSpeed;
+                timeHorseRacing = passingResult;
                 if (passingResult < winTime) {
                     winTime = passingResult;
                     winPair = String.valueOf(jockey.getRider().getRegistrationNumber());
-                    if (timeHorseRacing > winTime) {
-                        timeHorseRacing = winTime;
-                    }
+                }
+                if (passingResult>winTime){
+                   timeHorseRacing =  passingResult;
                 }
             }
             int balance = oneXBet(winPair, cash, jockeys);
-            String format = "%.2f";
-            System.out.println();
-            System.out.print("Пара под номером " + winPair + " победила со временем: ");
-            System.out.printf(format, winTime);
+            System.out.print("Pair number " + winPair + " won the race against time: "+
+                    String.format("%.2f",winTime));
             System.out.println();
             cash = balance;
+            System.out.println("Race time ="+timeHorseRacing);
         }
     }
-@ExecutionTime
+
+
     private int oneXBet(String winPair, int cash, Jockey... jockeys) {
         List<Integer> registrationNumberList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
