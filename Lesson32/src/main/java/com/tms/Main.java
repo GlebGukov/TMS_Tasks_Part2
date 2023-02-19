@@ -1,7 +1,7 @@
 package com.tms;
 
-import com.tms.horseRacing.HorseRacing;
-import com.tms.horseRacing.impl.EuropeCompetitionsHorseRacingImpl;
+import com.tms.dto.horseRacing.HorseRacing;
+import com.tms.dto.horseRacing.impl.EuropeCompetitionsHorseRacingImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {

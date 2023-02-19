@@ -1,7 +1,7 @@
 package com.tms.config;
 
-import com.tms.jockey.horse.Temperaments;
-import com.tms.track.TypeOfTrack;
+import com.tms.dto.jockey.horse.Temperaments;
+import com.tms.dto.track.TypeOfTrack;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
