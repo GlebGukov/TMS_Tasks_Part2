@@ -13,6 +13,6 @@ public class Main {
         Jockey jockey3 = (Jockey) context.getBean("jockey3");
         Jockey jockey4 = (Jockey) context.getBean("jockey4");
         HorseRacing horseRacing = context.getBean(HorseRacing.class);
-        horseRacing.startCompetitions(TrackExample.DefaultTrack,500,jockey1,jockey2,jockey3,jockey4);
+        horseRacing.competitions(TrackExample.DefaultTrack,500,jockey1,jockey2,jockey3,jockey4);
     }
 }

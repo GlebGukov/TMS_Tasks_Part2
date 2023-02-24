@@ -1,8 +1,5 @@
 package com.tms.jockey.horses.myEnum;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public enum TrackExample {
     DifficultTrack(10,1000),
     EasyTrack(3,200),

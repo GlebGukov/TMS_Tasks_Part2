@@ -1,38 +1,45 @@
 package com.tms;
 
+import com.tms.aop.ExecutionTime;
 import com.tms.jockey.Jockey;
 import com.tms.jockey.horses.myEnum.TrackExample;
-import org.springframework.stereotype.Service;
 
 import java.util.*;
-@Service
+
 public class HorseRacing {
 
-    public void startCompetitions(TrackExample track, int cash, Jockey... jockeys){
-        while (cash>0) {
+    @ExecutionTime
+    public void competitions(TrackExample track, int cash, Jockey... jockeys) {
+        while (cash > 0) {
             int cfTrack = track.getDifficulty();
             int distance = track.getDistance();
             double winTime = distance;
             String winPair = null;
             double passingResult;
+            double timeHorseRacing = 0;
             for (Jockey jockey : jockeys) {
                 double totalSpeed = jockey.pairCf() / cfTrack;
                 passingResult = distance / totalSpeed;
+                timeHorseRacing = passingResult;
                 if (passingResult < winTime) {
                     winTime = passingResult;
                     winPair = String.valueOf(jockey.getRider().getRegistrationNumber());
                 }
+                if (passingResult>winTime){
+                   timeHorseRacing =  passingResult;
+                }
             }
             int balance = oneXBet(winPair, cash, jockeys);
-            String format = "%.2f";
-            System.out.println();
-            System.out.print("Пара под номером " + winPair + " победила со временем: ");
-            System.out.printf(format, winTime);
+            System.out.print("Pair number " + winPair + " won the race against time: "+
+                    String.format("%.2f",winTime));
             System.out.println();
             cash = balance;
+            System.out.println("Race time ="+timeHorseRacing);
         }
     }
-    private int oneXBet(String winPair,int cash,Jockey... jockeys) {
+
+
+    private int oneXBet(String winPair, int cash, Jockey... jockeys) {
         List<Integer> registrationNumberList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Participating in the races:");
@@ -53,7 +60,7 @@ public class HorseRacing {
         }
         System.out.println("how much ?");
         double betCash = scanner.nextInt();
-        while (betCash > cash || betCash<0) {
+        while (betCash > cash || betCash < 0) {
             System.out.println("no money on balance");
             betCash = scanner.nextInt();
         }

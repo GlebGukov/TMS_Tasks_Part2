@@ -10,12 +10,15 @@ import com.tms.jockey.horses.horseImpl.raceHorseImpl.Belarusian;
 import com.tms.jockey.horses.horseImpl.raceHorseImpl.Thoroughbreds;
 import com.tms.jockey.horses.horseImpl.raceHorseImpl.Trotter;
 import com.tms.jockey.horses.myEnum.Temperament;
-import com.tms.jockey.horses.myEnum.TrackExample;
 import com.tms.jockey.rider.Rider;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
+@ComponentScan(basePackages = {"com.tms.aop"})
+@EnableAspectJAutoProxy
 public class AppConfig {
     @Bean
     RaceHorse thoroughbreds() {
@@ -72,9 +75,6 @@ public class AppConfig {
     @Bean
     Jockey jockey4(RaceHorse arabian, Rider rider22) {
         return new Jockey(arabian, rider22);
-    }
-    TrackExample trackExample(){
-        return trackExample();
     }
     @Bean
     HorseRacing horseRacing(){
