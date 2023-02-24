@@ -1,33 +1,66 @@
 package com.tms.config;
 
-import com.tms.dto.jockey.horse.Temperaments;
-import com.tms.dto.track.TypeOfTrack;
+import com.tms.dto.Horse;
+import com.tms.dto.Temperaments;
+import com.tms.dto.TypeOfTrack;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = "com.tms")
 public class JavaConfig {
     @Bean
-    Temperaments Choleric(){
+    Horse arabian() {
+        return Horse.Arabian;
+    }
+
+    @Bean
+    Horse trotter() {
+        return Horse.Trotter;
+    }
+
+    @Bean
+    Horse belarusian() {
+        return Horse.Belarusian;
+    }
+
+    @Bean
+    Horse thoroughbreds() {
+        return Horse.Thoroughbreds;
+    }
+
+    @Bean
+    Temperaments choleric() {
         return Temperaments.Choleric;
     }
+
     @Bean
-    Temperaments Melancholic(){
+    Temperaments melancholic() {
         return Temperaments.Melancholic;
     }
+
     @Bean
-    Temperaments Phlegmatic(){
-        return Temperaments.Phlegmatic;
-    }
-    @Bean
-    Temperaments Sanguine(){
+    Temperaments sanguine() {
         return Temperaments.Sanguine;
     }
+
     @Bean
-    TypeOfTrack track(){
+    Temperaments phlegmatic() {
+        return Temperaments.Phlegmatic;
+    }
+
+    @Bean
+    TypeOfTrack easyTrack() {
         return TypeOfTrack.EasyTrack;
+    }
+
+    @Bean
+    TypeOfTrack defaultTrack() {
+        return TypeOfTrack.DefaultTrack;
+    }
+
+    @Bean
+    TypeOfTrack difficultTrack() {
+        return TypeOfTrack.DifficultTrack;
     }
 
 

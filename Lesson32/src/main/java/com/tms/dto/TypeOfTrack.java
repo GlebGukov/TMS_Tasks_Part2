@@ -1,7 +1,4 @@
-package com.tms.dto.track;
-
-import org.springframework.stereotype.Service;
-
+package com.tms.dto;
 public enum TypeOfTrack {
     DifficultTrack(10, 1000),
     EasyTrack(3, 200),
@@ -17,7 +14,7 @@ public enum TypeOfTrack {
         return distance;
     }
 
-    TypeOfTrack(int difficulty, int distance) {
+    TypeOfTrack( int difficulty, int distance) {
         this.difficulty = difficulty;
         this.distance = distance;
     }

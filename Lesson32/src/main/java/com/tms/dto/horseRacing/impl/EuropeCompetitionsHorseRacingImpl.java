@@ -1,75 +1,76 @@
 package com.tms.dto.horseRacing.impl;
 
-import com.tms.dto.horseRacing.CompetitorsHandler;
+import com.tms.dto.Jockey;
 import com.tms.dto.horseRacing.HorseRacing;
-import com.tms.dto.jockey.Jockey;
-import com.tms.dto.track.TypeOfTrack;
+import com.tms.dto.TypeOfTrack;
+import com.tms.service.ListJockey;
 import lombok.Data;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-@Component
 @Data
+@Component
 public class EuropeCompetitionsHorseRacingImpl implements HorseRacing {
-    TypeOfTrack track = TypeOfTrack.DefaultTrack;
-    CompetitorsHandler europeCompetitors = new ListOfEuropeanRaceParticipants();
-    @Setter
-    int cash = 500;
 
-    public EuropeCompetitionsHorseRacingImpl() {
+    @PostConstruct
+    public void doMyInit() {
+        System.out.println("Starting competitions");
     }
 
-    @Autowired
-    public EuropeCompetitionsHorseRacingImpl(TypeOfTrack track, CompetitorsHandler handler) {
-        this.track = track;
-        this.europeCompetitors = handler;
+    @PreDestroy
+    public void doMyDestr() {
+        System.out.println("You Lose");
     }
-
 
     @Override
-    public void startCompetitions() {
+    public String startCompetitions(ListJockey listJockey, TypeOfTrack track, int cash) {
         while (cash > 0) {
             double winTime = track.getDistance();
             String winPair = null;
             double passingResult;
             double timeHorseRacing = 0;
-            for (Jockey jockey : europeCompetitors.getCompetitors()) {
-                double totalSpeed = jockey.speed() / track.getDifficulty();
+            for (Jockey jockey : listJockey.getJockeyList()) {
+                double totalSpeed = jockey.getHorse().run() / track.getDifficulty();
                 passingResult = track.getDistance() / totalSpeed;
                 timeHorseRacing = passingResult;
                 if (passingResult < winTime) {
                     winTime = passingResult;
-                    winPair = String.valueOf(jockey.number());
+                    winPair = String.valueOf(jockey.getRider().getRegistrationNumber());
                 }
                 if (passingResult > winTime) {
                     timeHorseRacing = passingResult;
                 }
             }
-            int balance = oneXBet(winPair, cash, europeCompetitors);
+            int balance = oneXBet(winPair, cash, listJockey);
             System.out.print("Pair number " + winPair + " won the race against time: " +
                     String.format("%.2f", winTime));
             System.out.println();
             cash = balance;
             System.out.println("Race time =" + timeHorseRacing);
+            return winPair;
 
         }
+        return "youlose";
     }
 
-    private int oneXBet(String winPair, int cash, CompetitorsHandler competitors) {
+    private int oneXBet(String winPair, int cash, ListJockey listJockey) {
         List<Integer> registrationNumberList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Participating in the races:");
-        System.out.println(competitors.getCompetitors());
+        System.out.println(listJockey.getJockeyList());
         System.out.println("You balance: " + cash);
         System.out.println("Which jockey number would you like to bet on?");
-        competitors.getCompetitors().forEach(Jockey::number);
-        for (Jockey jockey : competitors.getCompetitors()) {
-            registrationNumberList.add(jockey.number());
+//        competitors.getCompetitors().forEach(Jockey::number);
+        for (Jockey jockey : listJockey.getJockeyList()) {
+            registrationNumberList.add(jockey.getRider().getRegistrationNumber());
         }
         int betNumber = scanner.nextInt();
         while (!registrationNumberList.contains(betNumber)) {
@@ -86,7 +87,7 @@ public class EuropeCompetitionsHorseRacingImpl implements HorseRacing {
             if (betNumber == Integer.parseInt(winPair)) {
                 System.out.println("You win");
                 return cash += betCash * 2;
-            } else System.out.println("you lose");
+            } else System.out.println();
             return cash -= betCash;
         }
         return cash;

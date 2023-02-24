@@ -1,4 +1,4 @@
-package com.tms.dto.jockey.horse;
+package com.tms.dto;
 
 public enum Temperaments {
     Choleric((Math.random() * (10 - 8) + 8), (Math.random() * (7 - 5) + 5), (Math.random() * (7 - 5) + 5)),

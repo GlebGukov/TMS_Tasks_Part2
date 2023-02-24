@@ -1,9 +1,10 @@
 package com.tms.dto.horseRacing;
 
-import org.springframework.stereotype.Service;
+import com.tms.dto.Jockey;
+import com.tms.dto.TypeOfTrack;
+import com.tms.service.ListJockey;
 
-@Service
 public interface HorseRacing {
 
-    void startCompetitions();
+    String startCompetitions(ListJockey listJockey, TypeOfTrack track, int cash);
 }
