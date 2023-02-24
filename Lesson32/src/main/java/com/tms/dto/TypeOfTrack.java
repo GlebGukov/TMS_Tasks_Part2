@@ -1,9 +1,8 @@
-package com.tms.jockey.horses.myEnum;
-
-public enum TrackExample {
-    DifficultTrack(10,1000),
-    EasyTrack(3,200),
-    DefaultTrack(6,600);
+package com.tms.dto;
+public enum TypeOfTrack {
+    DifficultTrack(10, 1000),
+    EasyTrack(3, 200),
+    DefaultTrack(6, 600);
     private final int difficulty;
     private final int distance;
 
@@ -15,7 +14,7 @@ public enum TrackExample {
         return distance;
     }
 
-    TrackExample(int difficulty, int distance) {
+    TypeOfTrack( int difficulty, int distance) {
         this.difficulty = difficulty;
         this.distance = distance;
     }
