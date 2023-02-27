@@ -1,13 +1,10 @@
 package com.tms.dto.horseRacing.impl;
 
 import com.tms.dto.Jockey;
-import com.tms.dto.horseRacing.HorseRacing;
 import com.tms.dto.TypeOfTrack;
+import com.tms.dto.horseRacing.HorseRacing;
 import com.tms.service.ListJockey;
 import lombok.Data;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @Data
-@Component
+//@Component
 public class EuropeCompetitionsHorseRacingImpl implements HorseRacing {
 
     @PostConstruct

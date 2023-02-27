@@ -1,6 +1,6 @@
 package com.tms.converter;
 
-public interface ConvertStringToObject {
+public interface ConvertStringToObject<T> {
 
-    Object convertString(String string);
+    T convertString(String string);
 }

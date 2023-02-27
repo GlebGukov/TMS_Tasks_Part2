@@ -19,6 +19,7 @@ public enum Horse {
     public double run() {
         return getTemperaments().getCfAggression() + getTemperaments().getCfPatience() + getTemperaments().getCfStability();
     }
+
     @Override
     public String toString() {
         return "temperaments=" + temperaments;

@@ -13,9 +13,7 @@ import javax.persistence.Embedded;
 @AllArgsConstructor
 @Component
 public class Jockey {
-    @Embedded
     private Horse horse;
-    @Embedded
     private Rider rider;
 
     @Override

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class Rider {
     private int registrationNumber;
-
     @Override
     public String toString() {
         return " registration number =" + registrationNumber;

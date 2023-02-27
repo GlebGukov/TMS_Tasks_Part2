@@ -11,7 +11,7 @@ import java.util.List;
 
 @Data
 @Component
-public class ListJockey implements DAO {
+public class ListJockey {
     private List<Jockey> jockeyList = new ArrayList<>();
 
     public ListJockey(List<Jockey> jockeyList) {
@@ -21,23 +21,19 @@ public class ListJockey implements DAO {
     public ListJockey() {
     }
 
-    @Override
-    public Jockey save(Jockey jockey) {
-        getJockeyList().add(jockey);
-        return jockey;
+    public Jockey save(Object arg) {
+        getJockeyList().add((Jockey) arg);
+        return (Jockey) arg;
     }
 
-    @Override
     public Jockey getId(int id) {
         return getJockeyList().stream().filter(jockey -> jockey.getRider().getRegistrationNumber() == id).findAny().orElse(null);
     }
 
-    @Override
     public List<Jockey> getAll() {
         return jockeyList;
     }
 
-    @Override
     public String deleteId(int id) {
         boolean b = getJockeyList().removeIf(jockey -> jockey.getRider().getRegistrationNumber() == id);
         return "Status = " + b;
