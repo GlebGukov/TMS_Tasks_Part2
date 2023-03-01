@@ -3,6 +3,7 @@ package com.tms.domain;
 import com.tms.Address;
 import com.tms.myEnum.Qualification;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,22 +15,23 @@ import java.util.Date;
 @ToString
 
 @Entity
-@Table(name = "Teacher")
-public class Teacher {
+@Table(name = "teacher")
+@Component
+public class TeacherEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Qualification qualification;
     @Temporal(TemporalType.DATE)
     private Date date;
     @Embedded
     private Address address;
-    @Column (name = "Attestation")
-    private Boolean aBoolean;
+    @Column(name = "attestation")
+    private Boolean attestation;
 
     @ToString.Exclude
     @OneToOne(mappedBy = "teacher")
-    private StudentCourse studentCourse;
+    private CourseEntity courseEntity;
 }

@@ -1,40 +1,42 @@
 package com.tms.service;
 
-import com.tms.domain.StudentCourse;
-import com.tms.domain.Teacher;
+import com.tms.domain.CourseEntity;
+import com.tms.domain.TeacherEntity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
+@Data
 @RequiredArgsConstructor
+@EqualsAndHashCode
+
 @Service
-public class TeacherService {
-    private final SessionFactory sessionFactory;
+public class TeacherService extends SessionService {
+    private SessionFactory sessionFactory;
 
-    public void save(Teacher teacher) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(teacher);
-        StudentCourse studentCourse = teacher.getStudentCourse();
-        session.save(studentCourse);
-        transaction.commit();
-        session.close();
-
+    public void save(TeacherEntity teacherEntity) {
+        Session session = openSession();
+        CourseEntity courseEntity = teacherEntity.getCourseEntity();
+        courseEntity.setTeacherEntity(teacherEntity);
+        session.save(teacherEntity);
+        session.save(courseEntity);
+        closeSession(session);
     }
 
     public void delete(Integer id) {
-
+        Session session = openSession();
+        TeacherEntity teacherEntity = session.find(TeacherEntity.class, id);
+        session.delete(teacherEntity);
+        closeSession(session);
     }
 
-    public Object get(Integer id) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        Teacher teacher = session.find(Teacher.class,id);
-        transaction.commit();
-        session.close();
-        return teacher;
-
+    public TeacherEntity get(Integer id) {
+        Session session = openSession();
+        TeacherEntity teacherEntity = session.find(TeacherEntity.class, id);
+        closeSession(session);
+        return teacherEntity;
     }
 }

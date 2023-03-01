@@ -1,6 +1,7 @@
 package com.tms.domain;
 
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -10,19 +11,21 @@ import javax.persistence.*;
 @Builder
 @ToString
 
+
 @Entity
-public class StudentCourse {
+@Component
+public class CourseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int numberOfStudents;
-    private boolean courseActive;
+    private Integer id;
+    private Integer numberOfStudents;
+    private Boolean courseActive;
 
     @ToString.Exclude
     @OneToOne
     @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
+    private TeacherEntity teacherEntity;
 
 
 }
