@@ -1,17 +1,17 @@
 package com.tms.domain;
 
-import com.tms.Address;
+import com.tms.dto.Address;
 import com.tms.myEnum.Qualification;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @ToString
 
 @Entity
@@ -31,7 +31,6 @@ public class TeacherEntity {
     @Column(name = "attestation")
     private Boolean attestation;
 
-    @ToString.Exclude
-    @OneToOne(mappedBy = "teacher")
-    private CourseEntity courseEntity;
+    @OneToMany(mappedBy = "teacher",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH})
+    private List<CourseEntity> courses;
 }

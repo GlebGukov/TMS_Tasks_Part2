@@ -1,6 +1,7 @@
 package com.tms.config;
 
 import com.tms.domain.CourseEntity;
+import com.tms.domain.StudentEntity;
 import com.tms.domain.TeacherEntity;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Environment;
@@ -28,6 +29,7 @@ public class HibernateConf {
 
         configuration.addAnnotatedClass(TeacherEntity.class);
         configuration.addAnnotatedClass(CourseEntity.class);
+        configuration.addAnnotatedClass(StudentEntity.class);
 
         return configuration.buildSessionFactory();
     }

@@ -2,27 +2,20 @@ package com.tms.service;
 
 import com.tms.domain.CourseEntity;
 import com.tms.domain.TeacherEntity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 
-@Data
-@RequiredArgsConstructor
-@EqualsAndHashCode
-
+import java.util.List;
 @Service
 public class TeacherService extends SessionService {
-    private SessionFactory sessionFactory;
-
-    public void save(TeacherEntity teacherEntity) {
+    public void save(TeacherEntity teacher) {
         Session session = openSession();
-        CourseEntity courseEntity = teacherEntity.getCourseEntity();
-        courseEntity.setTeacherEntity(teacherEntity);
-        session.save(teacherEntity);
-        session.save(courseEntity);
+
+//        List<CourseEntity> courses = teacher.getCourses();
+//        courses.forEach(session::save);
+
+        session.save(teacher);
+//        courses.forEach(courseEntity -> courseEntity.setTeacher(teacher));
         closeSession(session);
     }
 
