@@ -13,9 +13,9 @@ public class TeacherService extends SessionService {
 
 //        List<CourseEntity> courses = teacher.getCourses();
 //        courses.forEach(session::save);
+//        courses.forEach(courseEntity -> courseEntity.setTeacher(teacher));
 
         session.save(teacher);
-//        courses.forEach(courseEntity -> courseEntity.setTeacher(teacher));
         closeSession(session);
     }
 

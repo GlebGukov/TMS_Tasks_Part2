@@ -24,7 +24,7 @@ public class StudentEntity {
     private Sex sex;
 
     @ToString.Exclude
-    @ManyToMany(mappedBy = "student",fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "student",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private List <CourseEntity> course;
 
 }

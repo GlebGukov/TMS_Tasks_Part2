@@ -31,6 +31,6 @@ public class TeacherEntity {
     @Column(name = "attestation")
     private Boolean attestation;
 
-    @OneToMany(mappedBy = "teacher",fetch = FetchType.EAGER,cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH})
+    @OneToMany(mappedBy = "teacher",fetch = FetchType.EAGER)
     private List<CourseEntity> courses;
 }

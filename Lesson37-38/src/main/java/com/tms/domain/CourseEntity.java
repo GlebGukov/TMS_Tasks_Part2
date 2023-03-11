@@ -29,7 +29,7 @@ public class CourseEntity {
     @JoinColumn(name = "teacher_id")
     private TeacherEntity teacher;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "id_course"),
             inverseJoinColumns = @JoinColumn(name = "id_student"))
     private List <StudentEntity> student;
