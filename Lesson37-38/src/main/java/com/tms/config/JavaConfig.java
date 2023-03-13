@@ -1,33 +1,41 @@
 package com.tms.config;
 
-import com.tms.Address;
-import com.tms.domain.StudentCourse;
-import com.tms.domain.Teacher;
-import com.tms.myEnum.Qualification;
+import com.tms.domain.CourseEntity;
+import com.tms.domain.StudentEntity;
+import com.tms.myEnum.Sex;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Date;
 
 @Configuration
 public class JavaConfig {
 
     @Bean
-    Address addressMinsk(){
-        return Address.builder().city("Minsk").index(218484).build();
-    }
-    @Bean
-    Address address2(){
-        return Address.builder().city("Brest").index(222222).build();
-    }
-    @Bean
-    StudentCourse studentCourse(){
-        return StudentCourse.builder().courseActive(false).numberOfStudents(12).build();
+    CourseEntity firstCourse() {
+        return CourseEntity.builder().courseActive(false).numberOfStudents(29).build();
     }
 
+    @Bean
+    CourseEntity secondCourse() {
+        return CourseEntity.builder().courseActive(true).numberOfStudents(11).build();
+    }
 
     @Bean
-    Teacher firstTeacher(){
-        return Teacher.builder().name("Name").address(addressMinsk()).date(new Date()).qualification(Qualification.SECOND_CATEGORY).studentCourse(studentCourse()).aBoolean(true).build();
+    StudentEntity firstStudent() {
+        return StudentEntity.builder().age(22).sex(Sex.MALE).name("Bob").build();
+    }
+
+    @Bean
+    StudentEntity secondStudent() {
+        return StudentEntity.builder().age(31).sex(Sex.FEMALE).name("Anastasiya").build();
+    }
+
+    @Bean
+    StudentEntity thirdStudent() {
+        return StudentEntity.builder().age(27).sex(Sex.MALE).name("Roberto").build();
+    }
+
+    @Bean
+    StudentEntity fourthStudent() {
+        return StudentEntity.builder().age(19).sex(Sex.FEMALE).name("Roza").build();
     }
 }
